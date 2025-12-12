@@ -1,23 +1,32 @@
 import { useEffect, useState } from "react";
 import { useTicketDb } from "../hooks/useTicketDb";
+import { useTicketContext } from "../TicketContext";
 
 export const TicketList = () => {
-  const { getAllTickets } = useTicketDb();
+  const { db, getAllTickets, getTicket } = useTicketDb();
   const [tickets, setTickets] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
-  
+  const { isCreating, setSelectedTicket } = useTicketContext();
+
   useEffect(() => {
     setIsFetching(true);
+    if (!db) return;
     getAllTickets().then(
-      result => {
+      (result) => {
         setIsFetching(false);
         setTickets(result);
       },
-      err => {
+      (err) => {
         setIsFetching(false);
         console.error("Could not fetch tickets: ", err);
-      })
-  }, []);
+      }
+    );
+  }, [db, isCreating]);
+
+  const handleTicketSelected = async (id) => {
+    const ticket = await getTicket(id);
+    setSelectedTicket(ticket);
+  };
 
   if (isFetching) {
     return (
@@ -25,7 +34,7 @@ export const TicketList = () => {
         <h2>All Tickets</h2>
         <h3>Loading ticket list...</h3>
       </div>
-    )
+    );
   }
 
   if (tickets.length === 0) {
@@ -34,7 +43,7 @@ export const TicketList = () => {
         <h2>All Tickets</h2>
         <h3>No tickets created yet. Use the form to submit one.</h3>
       </div>
-    )
+    );
   }
 
   return (
@@ -49,17 +58,18 @@ export const TicketList = () => {
           </tr>
         </thead>
         <tbody>
-          {tickets.map(ticket => (
-            <TicketListItem 
+          {tickets.map((ticket) => (
+            <TicketListItem
               key={ticket.id}
+              onTicketSelected={handleTicketSelected}
               {...ticket}
             />
           ))}
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
 const TicketListItem = ({ id, summary, product, onTicketSelected }) => (
   <tr>
@@ -71,4 +81,4 @@ const TicketListItem = ({ id, summary, product, onTicketSelected }) => (
     </td>
     <td>{product}</td>
   </tr>
-)
+);
