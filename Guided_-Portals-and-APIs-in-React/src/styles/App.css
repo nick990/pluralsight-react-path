@@ -1,0 +1,121 @@
+/* App.css */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #1c1e21;  /* Dark background for the app */
+  color: #fff;  /* White text color for better readability on dark bg */
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.App {
+  background: #282c34; /* Slightly lighter dark shade for app background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 800px; /* Adjust width for better spacing */
+  padding: 2rem;
+  text-align: center;
+}
+
+h1 {
+  color: #61dafb; /* React blue for branding */
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #333;
+  padding: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+li:hover {
+  background-color: #444; /* Lighten on hover for interactive feedback */
+}
+/* 
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 500px;
+  z-index: 1000;
+}
+
+.modal-content {
+  text-align: left;
+}
+
+button {
+  background-color: #61dafb;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  opacity: 0.9;
+} */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* width: auto; */
+  /* max-width: 300px; */
+  background-color: rgba(0, 0, 0, 0.5); /* Dark background for the modal */
+  color: #1c1e21; /* Light color text for readability */
+  padding: 20px; /* Padding around the content */
+  border-radius: 8px; /* Rounded corners for the modal */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  z-index: 1050; /* Make sure it's above other content */
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content {
+  position: relative; /* Needed to position the close button absolutely within */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+}
+
+.modal button {
+  position: absolute;
+  top: 10px;
+  right: 10px; /* Position the close button at the top right */
+  background-color: #555; /* Darker button for contrast */
+  color: #fff; /* White text color */
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8em; /* Smaller font size for the button */
+}
+
+.modal button:hover {
+  background-color: #666; /* Lighten the button color on hover */
+}

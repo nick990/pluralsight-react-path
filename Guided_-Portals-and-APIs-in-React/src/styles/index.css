@@ -1,0 +1,46 @@
+/* Index.css */
+:root {
+  font-family: 'Inter', sans-serif; /* Consistent font throughout the app */
+  font-size: 16px; /* Base font size */
+  color: #ffffff;
+  background-color: #1c1e21;
+}
+
+body, h1, button {
+  margin: 0;
+  padding: 0;
+}
+
+
+a {
+  color: #61dafb;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Enhance visibility and interactivity */
+button {
+  display: inline-block;
+  background-color: #61dafb;
+  color: white;
+  text-align: center;
+  padding: 0.8em 1.6em;
+  border: none;
+  border-radius: 0.3em;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover, button:focus {
+  background-color: #4095c6;
+  color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #ccc;
+    background-color: #2c2f33;
+  }
+}
