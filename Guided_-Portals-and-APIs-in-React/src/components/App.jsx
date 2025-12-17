@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
-import MovieList from './MovieList';
-import MovieModal from './MovieModal';
-import './../styles/App.css';
+import React, { useState } from "react";
+import MovieList from "./MovieList";
+import MovieModal from "./MovieModal";
+import "./../styles/App.css";
 
 const App = () => {
-  
-  // Functions and States to be defined here
+  const [selectedMovieId, setSelectedMovieId] = useState(null);
+  const handleMovieClick = (movieId) => {
+    setSelectedMovieId(movieId);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedMovieId(null);
+  };
 
   return (
     <div>
       <h1>Movie App</h1>
-      {/* Render movie list and modal here */}
+      <MovieList onMovieClick={handleMovieClick} />
+      {selectedMovieId && (
+        <MovieModal movieId={selectedMovieId} onClose={handleCloseModal} />
+      )}
     </div>
   );
 };

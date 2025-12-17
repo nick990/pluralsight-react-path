@@ -1,15 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const MovieList = ({ onMovieClick }) => {
-  
+  const [movies, setMovies] = useState([]);
   useEffect(() => {
-    // Code to fetch the list of movies here
+    fetch("/api/movies")
+      .then((response) => response.json())
+      .then((data) => setMovies(data))
+      .catch((error) => console.error("Error fetching movies:", error));
   }, []);
 
   return (
     <div>
       <ul>
-        {/* Display the movies list here */}
+        {movies.map((movie) => (
+          <li key={movie.id} onClick={() => onMovieClick(movie.id)}>
+            {movie.title} by {movie.director}
+          </li>
+        ))}
       </ul>
     </div>
   );
